@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('serial_number');
-            $table->bigInteger('discount')->default(0);
             $table->bigInteger('total')->default(0);
             $table->bigInteger('paid')->default(0);
             $table->bigInteger('change')->default(0);

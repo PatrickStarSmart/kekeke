@@ -25,8 +25,6 @@ class UserController extends Controller
 {
     $validated = $request->validated();
 
-    $validated['role'] = (bool)$validated['role'];
-
     User::create($validated);
 
     return redirect()->route('users')->with('success', 'User created successfully');

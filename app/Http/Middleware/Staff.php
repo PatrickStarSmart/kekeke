@@ -17,9 +17,9 @@ class Staff
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->role == 'staff') {
-            return redirect()->route('products');
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect()->route('list.products');
     }
 }

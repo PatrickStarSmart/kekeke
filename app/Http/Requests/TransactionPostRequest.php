@@ -14,8 +14,8 @@ class TransactionPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required'],
-            'paid' => ['required', 'numeric', 'min:0']
+            'total' => ['required', 'numeric'],
+            'paid' => ['required', 'numeric'],
         ];
     }
 }

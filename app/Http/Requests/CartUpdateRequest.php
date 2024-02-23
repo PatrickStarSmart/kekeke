@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserPostRequest extends FormRequest
+class CartUpdateRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,9 +14,7 @@ class UserPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string'],
-            'role' => ['required'],
+            'qty' => ['required'],
         ];
     }
 }

@@ -12,7 +12,6 @@ class Transaction extends Model
     protected $fillable = [
         'user_id',
         'serial_number',
-        'discount',
         'total',
         'paid',
         'change',
@@ -20,6 +19,11 @@ class Transaction extends Model
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    protected $hidden = [
+        'update_at'
     ];
 
     public function user()

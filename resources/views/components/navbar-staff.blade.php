@@ -8,16 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 {{-- <a class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }}" href="#">Home</a> --}}
-                <a class="nav-link {{ Route::currentRouteName() === 'products' ? 'active' : '' }}"
-                    href="{{ route('products') }}">Products</a>
-                <a class="nav-link {{ Route::currentRouteName() === 'users' ? 'active' : '' }}"
-                    href="{{ route('users') }}">Carts</a>
-                <a class="nav-link {{ Route::currentRouteName() === 'transactions' ? 'active' : '' }}"
-                    href="{{ route('transactions') }}">History</a>
+                <a class="nav-link {{ Route::currentRouteName() === 'list.products' ? 'active text-primary' : '' }}"
+                    href="{{ route('list.products') }}">Products</a>
+                <a class="nav-link {{ Route::currentRouteName() === 'carts' ? 'active text-primary' : '' }}"
+                    href="{{ route('carts') }}">Carts</a>
+                <a class="nav-link {{ Route::currentRouteName() === 'histories' ? 'active text-primary' : '' }}"
+                    href="{{ route('histories') }}">History</a>
             </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="btn btn-outline-danger" type="" href="#">Logout</a>
+                    <a class="btn btn-outline-danger" type="" href="{{ route('staff.logout') }}">Logout</a>
                 </li>
             </ul>
         </div>

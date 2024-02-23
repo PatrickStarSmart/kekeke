@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Transaction;
 use App\Http\Controllers\Controller;
+use App\Exports\TransactionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
@@ -16,13 +18,18 @@ class TransactionController extends Controller
 
     public function show($transactionId)
     {
-        $transactions = Transaction::findOrFail($transactionId);
-
-        $transactions->with([
+        $transactions = Transaction::with([
             'carts',
             'user',
-        ]);
+        ])
+        ->where('id', $transactionId)
+        ->first();
 
-        return view('', compact('transactions'));
+        return view('admin.transaction-detail', compact('transactions'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new TransactionsExport, 'transactions.xlsx');
     }
 }

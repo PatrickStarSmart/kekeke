@@ -20,7 +20,15 @@
         <div class="card my-5 border-0 shadow-sm">
             <div class="card-header d-flex flex-row justify-content-between align-items-center bg-light">
                 <h5 class="card-title mb-0 font-weight-bold">Products List</h5>
-                <a href="{{ route('carts') }}" class="btn btn-primary"><i class="bi bi-cart-fill"></i> Carts</a>
+                <a href="{{ route('carts') }}" type="button" class="btn btn-primary position-relative">
+                    <i class="bi bi-cart-fill"></i> Carts
+                    @if ($carts > 0)
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ $carts }}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    @endif
+                </a>
             </div>
             <div class="card-body table-responsive p-4">
                 <table class="table table-striped table-hover table-bordered" style="font-size: 0.9rem;">
@@ -46,7 +54,6 @@
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $item->id }}">
                                             <input type="hidden" name="qty" value="1">
-                                            <input type="hidden" name="user_id" value="1">
                                             <input type="hidden" name="price" value="{{ $item->price }}">
                                             <input type="hidden" name="sub_total" value="{{ $item->price }}">
                                             <button type="submit" class="btn btn-sm btn-success">

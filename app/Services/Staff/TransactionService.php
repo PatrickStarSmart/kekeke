@@ -3,6 +3,8 @@
 namespace App\Services\Staff;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionService
 {
@@ -13,23 +15,17 @@ class TransactionService
 
     public function showDetailTransaction($transactionId)
     {
-        return Transaction::findOrFail($transactionId)->with(['carts']);
+        return Transaction::with(['carts', 'user'])->where('id', $transactionId)->where('user_id', Auth::user()->id)->first();
     }
 
-    public function checkout(
-        $userId,
-        $discount,
-        $total,
-        $paid,
-    )
+    public function checkout($total, $paid)
     {
         return Transaction::create([
-            'user_id' => $userId,
-            'serial_number' => '#'.Transaction::count() +1,
-            'discount' => $discount,
-            'total' => $total - $discount,
+            'user_id' => Auth::user()->id,
+            'serial_number' => 'SN'.Transaction::count() +1,
+            'total' => $total,
             'paid' => $paid,
-            'change' => $paid - ($total - $discount),
+            'change' => $paid - $total,
         ]);
     }
 }
